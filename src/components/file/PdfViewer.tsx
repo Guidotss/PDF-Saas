@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { pdfjs, Document, Page } from "react-pdf";
+import { pdfjs } from "react-pdf";
 import { Ghost } from "lucide-react";
 import { useFileStore } from "@/store/useFileStore";
 import { UploadInput } from ".";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import { FullScreenPdf } from "./FullScreenPdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -34,15 +35,14 @@ export const PdfViewer = () => {
           </div>
         </div>
       ) : (
-        <Document
-          file={base64}
-          className={`w-full h-[80vh]`}
-          error="Something went wrong"
-          loading="Loading file"
-          noData="No file found"
-        >
-          <Page pageNumber={1} />
-        </Document>
+        <div className="flex items-center">
+          <div>
+            <FullScreenPdf url={base64}/>
+          </div>
+          <div>
+            hola.
+          </div>
+        </div>
       )}
     </section>
   );
