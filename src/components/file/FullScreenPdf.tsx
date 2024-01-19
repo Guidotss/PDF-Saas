@@ -20,7 +20,7 @@ export const FullScreenPdf = ({ url }: Props) => {
   };
 
   return (
-    <div className="h-screen w-full shadow-2xl">
+    <div className="w-[100vw] h-screen shadow-2xl overflow-y-scroll">
       <div className="flex items-cenbter justify-between border p-2 rounded-t-lg">
         <button
           className={`rounded py-1 px-5 bg-blue-500 hover:bg-blue-600 text-white ${

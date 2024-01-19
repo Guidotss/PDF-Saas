@@ -5,9 +5,10 @@ import { pdfjs } from "react-pdf";
 import { Ghost } from "lucide-react";
 import { useFileStore } from "@/store/useFileStore";
 import { UploadInput } from ".";
+import { FullScreenPdf } from "./FullScreenPdf";
+import { Chat } from "../chat";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import { FullScreenPdf } from "./FullScreenPdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -24,7 +25,7 @@ export const PdfViewer = () => {
   }, [file]);
 
   return (
-    <section className="p-5 mt-5">
+    <section className="px-5 mt-5">
       {!base64 ? (
         <div className="flex justify-center items-center h-[80vh]">
           <div className="flex flex-col items-center">
@@ -35,13 +36,10 @@ export const PdfViewer = () => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center">
-          <div>
-            <FullScreenPdf url={base64}/>
-          </div>
-          <div>
-            hola.
-          </div>
+        <div className="flex items-center overflow-hidden">
+          <FullScreenPdf url={base64} />
+
+          <Chat />
         </div>
       )}
     </section>
