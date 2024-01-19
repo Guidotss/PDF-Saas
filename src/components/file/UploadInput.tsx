@@ -1,6 +1,6 @@
 "use client";
-import { useFileStore } from "@/store/useFileStore";
 import { PlusCircle } from "lucide-react";
+import { useFileStore } from "@/store";
 
 export const UploadInput = () => {
   const { setFile } = useFileStore();

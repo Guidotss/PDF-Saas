@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { pdfjs } from "react-pdf";
 import { Ghost } from "lucide-react";
-import { useFileStore } from "@/store/useFileStore";
+import { useFileStore } from "@/store";
 import { UploadInput } from ".";
 import { FullScreenPdf } from "./FullScreenPdf";
 import { Chat } from "../chat";

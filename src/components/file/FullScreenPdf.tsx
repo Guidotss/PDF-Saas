@@ -1,7 +1,7 @@
 "use client";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {
   url: string;
