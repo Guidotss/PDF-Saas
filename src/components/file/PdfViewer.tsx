@@ -16,11 +16,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export const PdfViewer = () => {
-  const { file, base64, setBase64 } = useFileStore();
+  const { file, base64, uploadFile } = useFileStore();
 
   useEffect(() => {
     if (file) {
-      setBase64();
+      uploadFile();
     }
   }, [file]);
 
