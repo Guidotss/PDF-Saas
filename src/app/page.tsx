@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="">
       <Navbar />
-      <section className="h-screen grainy flex flex-col items-center py-20 gap-y-3  ">
+      <section className="h-screen grainy flex flex-col items-center py-20 2xl:py-48 gap-y-3  ">
         <Chip label="Chat PDf is now available!" color="white" text="black" />
         <div className="flex text-7xl font-bold w-3/4 text-center">
           <h1 className="mt-2">
