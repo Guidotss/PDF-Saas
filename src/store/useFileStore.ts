@@ -22,7 +22,6 @@ export const useFileStore = create<FileStore>((set, get) => ({
 
       const binary = atob(base64.split(",")[1]);
       const array = Array.from(binary, (char) => char.charCodeAt(0));
-      console.log(array);
 
       const blob = new Blob([new Uint8Array(array)], {
         type: "application/pdf",
