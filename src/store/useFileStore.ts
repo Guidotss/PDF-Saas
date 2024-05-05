@@ -22,17 +22,18 @@ export const useFileStore = create<FileStore>((set, get) => ({
       set({ base64 });
 
       const compressedData = deflateSync(base64);
-
-
-
-      
+      // Send as form data
+      const formData = new FormData();
+      const blob = new Blob([compressedData], { type: "application/pdf" });
+      formData.append("file", blob, file!.name);
 
       const response = await fetch("http://localhost:8080/files/upload", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pdf: compressedData}),
+          Accept: "application/pdf",
+          "Content-Type": "application/pdf"
+        }, 
+        body: formData,
       });
 
       const data = await response.json(); 
