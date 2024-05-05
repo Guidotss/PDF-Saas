@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { deflateSync } from "zlib";
 import { toBase64 } from "@/utils";
 
 interface FileStore {
@@ -21,24 +20,27 @@ export const useFileStore = create<FileStore>((set, get) => ({
       const base64 = await toBase64(file!);
       set({ base64 });
 
-      const compressedData = deflateSync(base64);
-      // Send as form data
+      const binary = atob(base64.split(",")[1]);
+      const array = Array.from(binary, (char) => char.charCodeAt(0));
+      console.log(array);
+
+      const blob = new Blob([new Uint8Array(array)], {
+        type: "application/pdf",
+      });
+
       const formData = new FormData();
-      const blob = new Blob([compressedData], { type: "application/pdf" });
-      formData.append("file", blob, file!.name);
+      formData.append("file", blob);
 
       const response = await fetch("http://localhost:8080/files/upload", {
         method: "POST",
         headers: {
-          Accept: "application/pdf",
-          "Content-Type": "application/pdf"
-        }, 
+          "Content-Type": "application/pdf",
+        },
         body: formData,
       });
 
-      const data = await response.json(); 
+      const data = await response.json();
       console.log(data);
-      
     } catch (error) {
       console.log(error);
     }
